@@ -1,0 +1,99 @@
+@use "../abstracts/variables" as *;
+
+:root {
+  --mainColor: orangered;
+}
+.form {
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.3s linear;
+  background-color: white;
+  z-index: 1020;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: $shadow-2;
+  width: fit-content;
+  min-width: 300px;
+  gap: 30px;
+  &.show {
+    opacity: 1;
+    pointer-events: all;
+    top: 30%;
+  }
+  @include fixed(top 20% left 50%);
+  transform: translate(-50%, -50%);
+  input {
+    margin-top: 20px;
+    padding: 10px;
+    width: 100%;
+  }
+  label {
+    font-size: 20px;
+  }
+  .add-note {
+    background-color: var(--mainColor);
+    color: whitesmoke;
+    padding: 10px 30px;
+    border-radius: 10px;
+    margin: auto;
+    &:hover {
+      background-color: lighten(orangered, 0.5);
+    }
+  }
+  .header {
+    text-align: center;
+    font-size: 23px;
+    color: var(--mainColor);
+  }
+}
+
+.overlay {
+  @include page-overlay;
+}
+
+.notes {
+  padding: 40px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  .note,
+  .add-box {
+    flex-grow: 1;
+    max-width: 300px;
+    align-self: stretch;
+    flex-basis: 200px;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: $shadow-2;
+  }
+  .note {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    justify-content: space-between;
+  }
+  .add-box {
+    @include flex-center;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 30px;
+    button {
+      cursor: pointer;
+      display: block;
+      @include box(30px);
+      padding: 40px;
+      @include flex-center;
+      font-size: 39px;
+      color: var(--mainColor);
+      border-radius: 50%;
+      border: 2px dashed var(--mainColor);
+    }
+    h1 {
+      font-size: 20px;
+      color: var(--mainColor);
+    }
+  }
+}
